@@ -9,11 +9,13 @@ const Users = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedUsers, setLoadedUsers] = useState();
 
+  console.log("REACT_APP_BACKEND_URL", process.env.REACT_APP_BACKEND_URL);
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users'
+          process.env.REACT_APP_BACKEND_URL + '/users'
         );
 
         setLoadedUsers(responseData.users);
